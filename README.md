@@ -1,6 +1,4 @@
-Thw aim of this project was to try my hands on noSQL with a focus on MongoDB.
-
-In this project, I obtained a sample json sales data from Kaggle and imported into my mongo db. Afterwards, I did the following:
+In this project, I obtained a sample json sales data from Kaggle (https://www.kaggle.com/datasets/shrashtisinghal/mongo-db-datsets?select=sales.json) and imported into my mongo db. Afterwards, I did the following:
 
 - Attempted to query my db to obtain certain KPIs (primary purpose of this was to be able to validate the correctness of the file imported into Tableau for visualisation)
 - Downloaded the sales document from my db in json format
