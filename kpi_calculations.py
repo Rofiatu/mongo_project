@@ -12,7 +12,6 @@ def decimal128_to_decimal(value):
         return value.to_decimal()
 
 def calculate_total_sales_value():
-    
     pipeline = [
         {'$unwind': '$items'},
         {'$group': {
@@ -28,8 +27,7 @@ def calculate_total_sales_value():
     
     return total_sales_value
 
-def calculate_number_of_customers():
-    
+def calculate_number_of_customers():    
     pipeline = [
         {'$group': {
             '_id': '$customer.email'
@@ -49,8 +47,7 @@ def calculate_average_sale_per_customer(total_sales_value, num_customers):
     avg_sale_per_customer = total_sales_value / num_customers
     return avg_sale_per_customer
 
-def calculate_average_price_per_item():
-        
+def calculate_average_price_per_item():        
     average_price_pipeline = [
         {'$unwind': '$items'},
         {'$group': {
@@ -71,8 +68,7 @@ def calculate_average_price_per_item():
     
     return average_price
 
-def calculate_individual_average_price_per_item():
-        
+def calculate_individual_average_price_per_item():        
     average_prices = {}
     
     for document in mycoll.find():
@@ -94,8 +90,7 @@ def calculate_individual_average_price_per_item():
     
     return average_prices
 
-def calculate_total_quantity_sold():
-        
+def calculate_total_quantity_sold():        
     total_qty_pipeline = [
         {'$unwind': '$items'},
         {'$group': {
@@ -113,8 +108,7 @@ def calculate_total_quantity_sold():
     
     return total_qty
 
-def calculate_total_item_count():
-        
+def calculate_total_item_count():        
     item_count_pipeline = [
         {'$unwind': '$items'},
         {'$group': {
@@ -131,20 +125,3 @@ def calculate_total_item_count():
     item_count = next(result)['totalItemCount']
     
     return item_count
-
-# total_sales_value = calculate_total_sales_value()
-# num_customers = calculate_number_of_customers()
-# avg_sale_per_customer = calculate_average_sale_per_customer(total_sales_value, num_customers)
-# avg_price_per_item = calculate_average_price_per_item()
-# individual_avg_per_item = calculate_individual_average_price_per_item()
-# total_qty = calculate_total_quantity_sold()
-# item_count = calculate_total_item_count()
-
-# print(f'Total Sales Value: {total_sales_value}')
-# print(f'Number of Unique Customers: {num_customers}')
-# print(f'Average sale per Customer: {avg_sale_per_customer}')
-# print(f'Average Price per Item: {avg_price_per_item}')
-# for item_name, stats in individual_avg_per_item.items():
-#     print(f"Average price for {item_name}: ${stats['average_price']:.2f}")
-# print(f'Total Qty Sold: {total_qty}')
-# print(f'Total Count of Items: {item_count}')
